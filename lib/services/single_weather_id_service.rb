@@ -1,5 +1,6 @@
 require 'json'
 require 'httparty'
+require 'yaml'
 
 class SingleWeatherService
   include HTTParty
@@ -10,6 +11,12 @@ class SingleWeatherService
 
   def initialize
     @api_key = "&APPID=e5cb8e57460b0035b50a9b5fa1c89454"
+  end
+
+  def get_random_id
+    id = YAML.load_file("../random_data/city_id.yml")
+    x = id[rand(id.length) -1 ]
+    id[x]
   end
 
   def get_single_weather_id_location(zip)
@@ -28,16 +35,15 @@ class SingleWeatherService
     @single_weather_data['message']
   end
 
-  def get__latitude
-    @single_weather_data['city']['coord']['lat']
+  def get_latitude_and_longitude(name)
+    if name == "lat"
+      @single_weather_data['city']['coord']['lat']
+    elsif name == "lon"
+      @single_weather_data['city']['coord']['lon']
+    end
   end
-
-  def get_longitude
-    @single_weather_data['city']['coord']['lon']
-  end
-
 
 end
 
-# x = SingleWeatherService.new
-# puts x.get_single_weather_location("2638976")
+x = SingleWeatherService.new
+puts x.get_random_id

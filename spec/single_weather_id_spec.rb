@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'requesting weather on a single weather by id' do
   before(:all) do
     @weatherio = SingleWeatherio.new.single_weather_id_location
-    @weatherio.get_single_weather_id_location(2638976)
+    @weatherio.get_single_weather_id_location(get_random_id)
   end
 
 
@@ -29,18 +29,11 @@ describe 'requesting weather on a single weather by id' do
     end
 
     it "longitude should be a FLOAT" do
-      expect(@weatherio.get_longitude).to be_kind_of(Float)
+      expect(@weatherio.get_latitude_and_longitude("lon")).to be_kind_of(Float)
     end
 
     it "latitude should be a FLOAT" do
-      expect(@weatherio.get__latitude).to be_kind_of(Float)
+      expect(@weatherio.get_latitude_and_longitude("lat")).to be_kind_of(Float)
     end
-
-
-
-
-
-
-
 
 end
