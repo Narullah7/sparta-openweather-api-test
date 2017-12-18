@@ -16,7 +16,7 @@ describe 'requesting weather on a single weather by name ' do
 
   it 'List should have betwee 38 and 39 attributes inside it'do
     expect(@singleweathername.status_attributes.count
-    ).to be_between(38,39)
+    ).to be_between(35,40)
   end
 
   it 'the message attribute should be in the form FLOAT' do

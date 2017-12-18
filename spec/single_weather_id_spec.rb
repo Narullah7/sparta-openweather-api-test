@@ -17,7 +17,7 @@ describe 'requesting weather on a single weather by id' do
 
     it 'List should have 39 attributes inside it'do
       expect(@weatherio.status_attributes.count
-      ).to eq(39)
+      ).to be_between(35,40)
     end
 
     it 'the message attribute should be in the form FLOAT' do
